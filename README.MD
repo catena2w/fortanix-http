@@ -1,36 +1,11 @@
-# Run with
-
+Error log
 ```
-cargo run --target x86_64-fortanix-unknown-sgx
-```
-
-Error log:
-```
-$ cargo run --target x86_64-fortanix-unknown-sgx
-    Updating git repository `https://github.com/fortanix/rust-mbedtls`
-    Updating git repository `https://github.com/mzohreva/mio`
-    Updating git repository `https://github.com/fortanix/tokio.git`
-warning: Patch `mbedtls v0.7.1 (https://github.com/fortanix/rust-mbedtls?branch=raoul/tokio-1.15.0#7c128d03)` was not used in the crate graph.
-Patch `mio v0.7.6 (https://github.com/mzohreva/mio?branch=mz/sgx-port-0.7.6#b4370d8b)` was not used in the crate graph.
-Patch `tokio v1.33.0 (https://github.com/fortanix/tokio.git?branch=raoul/tokio-1.33.0-sgx#beabb64c)` was not used in the crate graph.
-Check that the patched package version and available features are compatible
-with the dependency requirements. If the patch has a different version from
-what is locked in the Cargo.lock file, run `cargo update` to use the new
-version. This may also occur with an optional dependency that is not enabled.
-   Compiling autocfg v1.1.0
-   Compiling proc-macro2 v1.0.69
-   Compiling futures-core v0.3.29
-   Compiling unicode-ident v1.0.12
-   Compiling bytes v1.5.0
-   Compiling pin-project-lite v0.2.13
-   Compiling version_check v0.9.4
-   Compiling typenum v1.17.0
-   Compiling futures-task v0.3.29
-   Compiling fnv v1.0.7
-   Compiling itoa v1.0.9
-   Compiling once_cell v1.18.0
-   Compiling socket2 v0.5.5
+warning: skipping duplicate package `get-certificate` found at `/home/ubuntu/.cargo/git/checkouts/rust-sgx-d281d409bf29e97f/0a64b40/em-app/examples/client`
+warning: skipping duplicate package `get-certificate` found at `/home/ubuntu/.cargo/git/checkouts/rust-sgx-d281d409bf29e97f/0a64b40/em-app/examples/server`
+warning: skipping duplicate package `app` found at `/home/ubuntu/.cargo/git/checkouts/rust-sgx-d281d409bf29e97f/0a64b40/examples/usercall-extension-bind/app`
+warning: skipping duplicate package `runner` found at `/home/ubuntu/.cargo/git/checkouts/rust-sgx-d281d409bf29e97f/0a64b40/examples/usercall-extension-bind/runner`
    Compiling mio v0.8.9
+   Compiling socket2 v0.5.5
 error[E0583]: file not found for module `sys`
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/lib.rs:179:1
     |
@@ -40,68 +15,6 @@ error[E0583]: file not found for module `sys`
     = help: to create the module `sys`, create file "/home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/sys.rs" or "/home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/sys/mod.rs"
     = note: if there is a `mod sys` elsewhere in the crate already, import it with `use crate::...` instead
 
-error: Socket2 doesn't support the compile target
-   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/lib.rs:182:1
-    |
-182 | compile_error!("Socket2 doesn't support the compile target");
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-error[E0432]: unresolved imports `crate::sys::c_int`, `crate::sys::sa_family_t`, `crate::sys::sockaddr`, `crate::sys::sockaddr_in`, `crate::sys::sockaddr_in6`, `crate::sys::sockaddr_storage`, `crate::sys::socklen_t`, `crate::sys::AF_INET`, `crate::sys::AF_INET6`, `crate::sys::AF_UNIX`
-  --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/sockaddr.rs:11:5
-   |
-11 |     c_int, sa_family_t, sockaddr, sockaddr_in, sockaddr_in6, sockaddr_storage, socklen_t, AF_INET,
-   |     ^^^^^  ^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^  ^^^^^^^^^  ^^^^^^^ no `AF_INET` in `sys`
-   |     |      |            |         |            |             |                 |
-   |     |      |            |         |            |             |                 no `socklen_t` in `sys`
-   |     |      |            |         |            |             no `sockaddr_storage` in `sys`
-   |     |      |            |         |            no `sockaddr_in6` in `sys`
-   |     |      |            |         no `sockaddr_in` in `sys`
-   |     |      |            no `sockaddr` in `sys`
-   |     |      no `sa_family_t` in `sys`
-   |     no `c_int` in `sys`
-12 |     AF_INET6, AF_UNIX,
-   |     ^^^^^^^^  ^^^^^^^ no `AF_UNIX` in `sys`
-   |     |
-   |     no `AF_INET6` in `sys`
-   |
-   = help: consider importing one of these items instead:
-           std::ffi::c_int
-           std::os::raw::c_int
-           core::ffi::c_int
-   = help: consider importing this module instead:
-           crate::sockaddr
-
-error[E0432]: unresolved imports `crate::sys::c_int`, `crate::sys::getsockopt`, `crate::sys::setsockopt`, `crate::sys::Bool`
-  --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/socket.rs:23:24
-   |
-23 | use crate::sys::{self, c_int, getsockopt, setsockopt, Bool};
-   |                        ^^^^^  ^^^^^^^^^^  ^^^^^^^^^^  ^^^^ no `Bool` in `sys`
-   |                        |      |           |
-   |                        |      |           no `setsockopt` in `sys`
-   |                        |      no `getsockopt` in `sys`
-   |                        no `c_int` in `sys`
-   |
-   = help: consider importing one of these items instead:
-           std::ffi::c_int
-           std::os::raw::c_int
-           core::ffi::c_int
-
-error[E0432]: unresolved import `sys::c_int`
-   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/lib.rs:184:5
-    |
-184 | use sys::c_int;
-    |     ^^^^^^^^^^ no `c_int` in `sys`
-    |
-help: consider importing one of these items instead
-    |
-184 | use core::ffi::c_int;
-    |     ~~~~~~~~~~~~~~~~
-184 | use std::ffi::c_int;
-    |     ~~~~~~~~~~~~~~~
-184 | use std::os::raw::c_int;
-    |     ~~~~~~~~~~~~~~~~~~~
-
-   Compiling futures-util v0.3.29
 error[E0432]: unresolved import `crate::sys::IoSourceState`
   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/io_source.rs:12:5
    |
@@ -125,6 +38,12 @@ error[E0433]: failed to resolve: could not find `Selector` in `sys`
     |
 308 |             sys::Selector::new().map(|selector| Poll {
     |                  ^^^^^^^^ could not find `Selector` in `sys`
+
+error: Socket2 doesn't support the compile target
+   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/lib.rs:182:1
+    |
+182 | compile_error!("Socket2 doesn't support the compile target");
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 error[E0433]: failed to resolve: could not find `event` in `sys`
   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/event/event.rs:24:14
@@ -180,12 +99,66 @@ error[E0433]: failed to resolve: could not find `event` in `sys`
 183 |         sys::event::is_lio(&self.inner)
     |              ^^^^^ could not find `event` in `sys`
 
-   Compiling pin-utils v0.1.0
 error[E0433]: failed to resolve: could not find `event` in `sys`
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/event/event.rs:221:26
     |
 221 |                     sys::event::debug_details(f, self.0)
     |                          ^^^^^ could not find `event` in `sys`
+
+error[E0432]: unresolved imports `crate::sys::c_int`, `crate::sys::sa_family_t`, `crate::sys::sockaddr`, `crate::sys::sockaddr_in`, `crate::sys::sockaddr_in6`, `crate::sys::sockaddr_storage`, `crate::sys::socklen_t`, `crate::sys::AF_INET`, `crate::sys::AF_INET6`, `crate::sys::AF_UNIX`
+  --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/sockaddr.rs:11:5
+   |
+11 |     c_int, sa_family_t, sockaddr, sockaddr_in, sockaddr_in6, sockaddr_storage, socklen_t, AF_INET,
+   |     ^^^^^  ^^^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^  ^^^^^^^^^  ^^^^^^^ no `AF_INET` in `sys`
+   |     |      |            |         |            |             |                 |
+   |     |      |            |         |            |             |                 no `socklen_t` in `sys`
+   |     |      |            |         |            |             no `sockaddr_storage` in `sys`
+   |     |      |            |         |            no `sockaddr_in6` in `sys`
+   |     |      |            |         no `sockaddr_in` in `sys`
+   |     |      |            no `sockaddr` in `sys`
+   |     |      no `sa_family_t` in `sys`
+   |     no `c_int` in `sys`
+12 |     AF_INET6, AF_UNIX,
+   |     ^^^^^^^^  ^^^^^^^ no `AF_UNIX` in `sys`
+   |     |
+   |     no `AF_INET6` in `sys`
+   |
+   = help: consider importing one of these items instead:
+           std::ffi::c_int
+           std::os::raw::c_int
+           core::ffi::c_int
+   = help: consider importing this module instead:
+           crate::sockaddr
+
+error[E0432]: unresolved imports `crate::sys::c_int`, `crate::sys::getsockopt`, `crate::sys::setsockopt`, `crate::sys::Bool`
+  --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/socket.rs:23:24
+   |
+23 | use crate::sys::{self, c_int, getsockopt, setsockopt, Bool};
+   |                        ^^^^^  ^^^^^^^^^^  ^^^^^^^^^^  ^^^^ no `Bool` in `sys`
+   |                        |      |           |
+   |                        |      |           no `setsockopt` in `sys`
+   |                        |      no `getsockopt` in `sys`
+   |                        no `c_int` in `sys`
+   |
+   = help: consider importing one of these items instead:
+           std::ffi::c_int
+           std::os::raw::c_int
+           core::ffi::c_int
+
+error[E0432]: unresolved import `sys::c_int`
+   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/lib.rs:184:5
+    |
+184 | use sys::c_int;
+    |     ^^^^^^^^^^ no `c_int` in `sys`
+    |
+help: consider importing one of these items instead
+    |
+184 | use core::ffi::c_int;
+    |     ~~~~~~~~~~~~~~~~
+184 | use std::ffi::c_int;
+    |     ~~~~~~~~~~~~~~~
+184 | use std::os::raw::c_int;
+    |     ~~~~~~~~~~~~~~~~~~~
 
 error[E0433]: failed to resolve: could not find `tcp` in `sys`
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:103:18
@@ -405,13 +378,54 @@ error[E0425]: cannot find value `stream` in this scope
 91 |         Ok(stream)
    |            ^^^^^^ not found in this scope
 
+error[E0425]: cannot find function `set_reuseaddr` in this scope
+  --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:74:9
+   |
+74 |         set_reuseaddr(&listener.inner, true)?;
+   |         ^^^^^^^^^^^^^ not found in this scope
+
+error[E0599]: no method named `register` found for struct `IoSource<std::net::TcpListener>` in the current scope
+   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:146:20
+    |
+146 |         self.inner.register(registry, token, interests)
+    |                    ^^^^^^^^ method not found in `IoSource<TcpListener>`
+    |
+   ::: /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/io_source.rs:62:1
+    |
+62  | pub struct IoSource<T> {
+    | ---------------------- method `register` not found for this struct
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `Source` defines an item `register`, perhaps you need to implement it
+   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/event/source.rs:75:1
+    |
+75  | pub trait Source {
+    | ^^^^^^^^^^^^^^^^
+
 error[E0433]: failed to resolve: could not find `MaybeUninitSlice` in `sys`
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/lib.rs:405:31
     |
 405 |         MaybeUninitSlice(sys::MaybeUninitSlice::new(buf))
     |                               ^^^^^^^^^^^^^^^^ could not find `MaybeUninitSlice` in `sys`
 
-   Compiling tracing-core v0.1.32
+error[E0599]: no method named `reregister` found for struct `IoSource<std::net::TcpListener>` in the current scope
+   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:155:20
+    |
+155 |         self.inner.reregister(registry, token, interests)
+    |                    ^^^^^^^^^^ method not found in `IoSource<TcpListener>`
+    |
+   ::: /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/io_source.rs:62:1
+    |
+62  | pub struct IoSource<T> {
+    | ---------------------- method `reregister` not found for this struct
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `Source` defines an item `reregister`, perhaps you need to implement it
+   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/event/source.rs:75:1
+    |
+75  | pub trait Source {
+    | ^^^^^^^^^^^^^^^^
+
 error[E0425]: cannot find function `unix_sockaddr` in module `crate::sys`
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/sockaddr.rs:153:21
     |
@@ -814,6 +828,24 @@ error[E0425]: cannot find value `SO_LINGER` in module `sys`
 930 |         unsafe { setsockopt(self.as_raw(), sys::SOL_SOCKET, sys::SO_LINGER, linger) }
     |                                                                  ^^^^^^^^^ not found in `sys`
 
+error[E0599]: no method named `deregister` found for struct `IoSource<std::net::TcpListener>` in the current scope
+   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:159:20
+    |
+159 |         self.inner.deregister(registry)
+    |                    ^^^^^^^^^^ method not found in `IoSource<TcpListener>`
+    |
+   ::: /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/io_source.rs:62:1
+    |
+62  | pub struct IoSource<T> {
+    | ---------------------- method `deregister` not found for this struct
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+note: `Source` defines an item `deregister`, perhaps you need to implement it
+   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/event/source.rs:75:1
+    |
+75  | pub trait Source {
+    | ^^^^^^^^^^^^^^^^
+
 error[E0425]: cannot find value `SOL_SOCKET` in module `sys`
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/socket.rs:942:53
     |
@@ -1035,12 +1067,6 @@ error[E0422]: cannot find struct, variant or union type `IpMreq` in module `sys`
      |
 1206 |         let mreq = sys::IpMreq {
      |                         ^^^^^^ not found in `sys`
-
-error[E0425]: cannot find function `set_reuseaddr` in this scope
-  --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:74:9
-   |
-74 |         set_reuseaddr(&listener.inner, true)?;
-   |         ^^^^^^^^^^^^^ not found in this scope
 
 error[E0425]: cannot find function `to_in_addr` in module `sys`
     --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/socket.rs:1207:33
@@ -1546,24 +1572,6 @@ error[E0425]: cannot find value `IPPROTO_IPV6` in module `sys`
 1809 |                 sys::IPPROTO_IPV6,
      |                      ^^^^^^^^^^^^ not found in `sys`
 
-error[E0599]: no method named `register` found for struct `IoSource<std::net::TcpListener>` in the current scope
-   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:146:20
-    |
-146 |         self.inner.register(registry, token, interests)
-    |                    ^^^^^^^^ method not found in `IoSource<TcpListener>`
-    |
-   ::: /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/io_source.rs:62:1
-    |
-62  | pub struct IoSource<T> {
-    | ---------------------- method `register` not found for this struct
-    |
-    = help: items from traits can only be used if the trait is implemented and in scope
-note: `Source` defines an item `register`, perhaps you need to implement it
-   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/event/source.rs:75:1
-    |
-75  | pub trait Source {
-    | ^^^^^^^^^^^^^^^^
-
 error[E0425]: cannot find value `IPV6_RECVTCLASS` in module `sys`
     --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.5/src/socket.rs:1810:22
      |
@@ -1764,43 +1772,6 @@ error[E0425]: cannot find function `msghdr_flags` in module `sys`
 713 |         sys::msghdr_flags(&self.inner)
     |              ^^^^^^^^^^^^ not found in `sys`
 
-error[E0599]: no method named `reregister` found for struct `IoSource<std::net::TcpListener>` in the current scope
-   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:155:20
-    |
-155 |         self.inner.reregister(registry, token, interests)
-    |                    ^^^^^^^^^^ method not found in `IoSource<TcpListener>`
-    |
-   ::: /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/io_source.rs:62:1
-    |
-62  | pub struct IoSource<T> {
-    | ---------------------- method `reregister` not found for this struct
-    |
-    = help: items from traits can only be used if the trait is implemented and in scope
-note: `Source` defines an item `reregister`, perhaps you need to implement it
-   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/event/source.rs:75:1
-    |
-75  | pub trait Source {
-    | ^^^^^^^^^^^^^^^^
-
-   Compiling futures-sink v0.3.29
-error[E0599]: no method named `deregister` found for struct `IoSource<std::net::TcpListener>` in the current scope
-   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/listener.rs:159:20
-    |
-159 |         self.inner.deregister(registry)
-    |                    ^^^^^^^^^^ method not found in `IoSource<TcpListener>`
-    |
-   ::: /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/io_source.rs:62:1
-    |
-62  | pub struct IoSource<T> {
-    | ---------------------- method `deregister` not found for this struct
-    |
-    = help: items from traits can only be used if the trait is implemented and in scope
-note: `Source` defines an item `deregister`, perhaps you need to implement it
-   --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/event/source.rs:75:1
-    |
-75  | pub trait Source {
-    | ^^^^^^^^^^^^^^^^
-
 error[E0599]: no method named `register` found for struct `IoSource<std::net::TcpStream>` in the current scope
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/tcp/stream.rs:325:20
     |
@@ -1855,10 +1826,6 @@ note: `Source` defines an item `deregister`, perhaps you need to implement it
 75  | pub trait Source {
     | ^^^^^^^^^^^^^^^^
 
-Some errors have detailed explanations: E0412, E0422, E0425, E0432, E0433, E0583.
-For more information about an error, try `rustc --explain E0412`.
-error: could not compile `socket2` (lib) due to 213 previous errors
-warning: build failed, waiting for other jobs to finish...
 error[E0599]: no method named `register` found for struct `IoSource<std::net::UdpSocket>` in the current scope
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/udp.rs:622:20
     |
@@ -1877,6 +1844,8 @@ note: `Source` defines an item `register`, perhaps you need to implement it
 75  | pub trait Source {
     | ^^^^^^^^^^^^^^^^
 
+Some errors have detailed explanations: E0412, E0422, E0425, E0432, E0433, E0583.
+For more information about an error, try `rustc --explain E0412`.
 error[E0599]: no method named `reregister` found for struct `IoSource<std::net::UdpSocket>` in the current scope
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/udp.rs:631:20
     |
@@ -1895,6 +1864,8 @@ note: `Source` defines an item `reregister`, perhaps you need to implement it
 75  | pub trait Source {
     | ^^^^^^^^^^^^^^^^
 
+error: could not compile `socket2` (lib) due to 213 previous errors
+warning: build failed, waiting for other jobs to finish...
 error[E0599]: no method named `deregister` found for struct `IoSource<std::net::UdpSocket>` in the current scope
    --> /home/ubuntu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/mio-0.8.9/src/net/udp.rs:635:20
     |
