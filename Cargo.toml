@@ -8,16 +8,18 @@ forced-target = "x86_64-fortanix-unknown-sgx"
 
 [patch.crates-io]
 # mbedtls = { git = "https://github.com/fortanix/rust-mbedtls", branch = "raoul/tokio-1.15.0" }
-mio = { git = "https://github.com/mzohreva/mio", branch = "mz/sgx-port-0.7.6" }
-# tokio = { git = "https://github.com/fortanix/tokio.git", branch = "raoul/tokio-1.15.0-sgx" }
-tokio = { git = "https://github.com/mzohreva/tokio", branch = "mz/sgx-port-0.3.4" }
+ mio = { git = "https://github.com/mzohreva/mio", branch = "mz/sgx-port-0.7.6" }
+ tokio = { git = "https://github.com/fortanix/tokio.git", branch = "raoul/tokio-1.15.0-sgx" }
+# tokio = { git = "https://github.com/mzohreva/tokio", branch = "mz/sgx-port-0.3.4" }
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-simple-hyper-client = "0.1.2"
-mio = "0.7.6"
-tokio = { version = "=0.3.4", features = ["io-util", "io-std", "macros", "net", "rt", "rt-multi-thread", "stream", "sync", "time"] }
+# simple-hyper-client = "0.1.2"
+ mio = "0.7.6"
+# tokio = { version = "=0.3.4", features = ["io-util", "io-std", "macros", "net", "rt", "rt-multi-thread", "stream", "sync", "time"] }
+tokio = { version = "1.15.0", features = ["rt", "macros", "net", "sync", "time"] }
+
 
 # mbedtls = "0.7.1"
 
