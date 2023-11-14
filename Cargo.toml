@@ -1,0 +1,16 @@
+cargo-features = ["per-package-target"]
+
+[package]
+name = "fortanix_test"
+version = "0.1.0"
+edition = "2021"
+forced-target = "x86_64-fortanix-unknown-sgx"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+simple-hyper-client = "0.1.2"
+
+
+
