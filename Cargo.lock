@@ -630,3 +630,18 @@ name = "windows_x86_64_msvc"
 version = "0.48.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ed94fce61571a4006852b7389a063ab983c02eb1bb37b47f8272ce92d06d9538"
+
+[[patch.unused]]
+name = "mbedtls"
+version = "0.7.1"
+source = "git+https://github.com/fortanix/rust-mbedtls?branch=raoul/tokio-1.15.0#7c128d034a67adb7acd195948a047bbe1914623e"
+
+[[patch.unused]]
+name = "mio"
+version = "0.7.6"
+source = "git+https://github.com/mzohreva/mio?branch=mz/sgx-port-0.7.6#b4370d8bea9951f7f01e29115b8ca0e9bfa25a77"
+
+[[patch.unused]]
+name = "tokio"
+version = "1.33.0"
+source = "git+https://github.com/fortanix/tokio.git?branch=raoul/tokio-1.33.0-sgx#beabb64c7916709b8dddb3310a49e1fbffe7cd3a"
