@@ -1,3 +1,7 @@
+use simple_hyper_client::{Client, HttpConnector};
+
 fn main() {
-    println!("Hello, world!");
+    let connector = HttpConnector::new();
+    let client = Client::with_connector(connector);
+    println!("ok");
 }
